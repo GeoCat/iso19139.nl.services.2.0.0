@@ -331,6 +331,16 @@ Acronyms should be written in full when first used.]]></help>
           <option type="accessPoint"
                   id="http://www.opengis.net/def/interface/ogcapi-features" value="OGC:API features" title="OGC API features">OGC:API features</option>
           <option type="accessPoint"
+                  id="http://www.opengis.net/def/interface/ogcapi-tiles" value="OGC:API tiles" title="OGC API tiles">OGC:API tiles</option>
+          <option type="accessPoint"
+                  id="http://www.opengis.net/def/interface/ogcapi-styles" value="OGC:API styles" title="OGC API styles">OGC:API styles</option>
+          <option type="accessPoint"
+                  id="http://www.opengis.net/def/interface/ogcapi-coverages" value="OGC:API coverages" title="OGC API styles">OGC:API coverages</option>
+          <option type="accessPoint"
+                  id="http://www.opengis.net/def/interface/ogcapi-3d-geovolumes" value="OGC:API 3dgeovolumes" title="OGC API 3dgeovolumes">OGC:API 3dgeovolumes</option>
+          <option type="accessPoint"
+                  id="http://www.opengis.net/def/interface/ogcapi-maps" value="OGC:API maps" title="OGC API maps">OGC:API maps</option>
+          <option type="accessPoint"
                   id="http://www.opengeospatial.org/standards/ols" value="OGC:OLS" title="OpenLS Service">OGC:OLS</option>
           <option type="accessPoint"
                   id="http://www.opengeospatial.org/standards/wps"
