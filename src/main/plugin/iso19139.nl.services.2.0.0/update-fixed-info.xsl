@@ -279,6 +279,11 @@
           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:CSW' or
           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OAS' or
           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API features' or
+          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API tiles' or
+          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API styles' or
+          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API coverages' or
+          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API 3dgeovolumes' or
+          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API maps' or
           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:OLS' or
           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:SensorThings' or
           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'W3C:SPARQL' or
@@ -315,6 +320,11 @@
                           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:CSW' or
                           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OAS' or
                           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API features' or
+                          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API tiles' or
+                          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API styles' or
+                          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API coverages' or
+                          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API 3dgeovolumes' or
+                          gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API maps' or
                           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:OLS' or
                           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:SensorThings' or
                           gmd:CI_OnlineResource/gmd:protocol/*/text() = 'W3C:SPARQL' or
