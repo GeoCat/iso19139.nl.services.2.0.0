@@ -32,6 +32,14 @@
 
   <bean id="iso19139.nl.services.2.0.0SchemaPlugin"
         class="org.fao.geonet.schema.iso19139.ISO19139SchemaPlugin">
+    <property name="outputSchemas">
+      <util:map key-type="java.lang.String" value-type="java.lang.String">
+        <entry key="csw" value="http://www.opengis.net/cat/csw/2.0.2"/>
+        <entry key="mdb" value="http://standards.iso.org/iso/19115/-3/mdb/2.0"/>
+        <entry key="gmd" value="http://www.isotc211.org/2005/gmd"/>
+        <entry key="dcat-ap-nl-3" value="https://docs.geostandaarden.nl/dcat/dcat-ap-nl30"/>
+      </util:map>
+    </property>
     <property name="xpathTitle">
       <util:list value-type="java.lang.String">
         <value>gmd:identificationInfo/*/gmd:citation/*/gmd:title/gco:CharacterString</value>
