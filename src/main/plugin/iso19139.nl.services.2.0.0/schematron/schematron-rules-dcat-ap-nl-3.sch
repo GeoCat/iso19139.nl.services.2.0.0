@@ -16,7 +16,7 @@
   <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
   <sch:ns prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform"/>
   <sch:ns prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-  <sch:ns prefix="xslutil" uri="java:org.fao.geonet.util.XslUtil" />
+  <sch:ns prefix="xslutil" uri="java:org.fao.geonet.schema.iso19139nl.util.XslUtil" />
 
   <sch:let name="lowercase" value="'abcdefghijklmnopqrstuvwxyz'"/>
   <sch:let name="uppercase" value="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
