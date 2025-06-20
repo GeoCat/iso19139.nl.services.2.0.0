@@ -456,15 +456,27 @@
       <sidePanel>
         <directive data-gn-validation-report=""/>
         <directive data-gn-suggestion-list=""/>
+
+        <directive data-gn-overview-manager=""
+                   data-file-types=".png,.gif,.jpeg,.jpg"
+                   data-editable-thumbnail="true" />
+
+        <directive data-gn-distribution-resources-panel="gnCurrentEdit.metadata"
+                   data-mode="viewConfig.distributionConfig.layout || ''"
+                   data-editor-config="default"
+                   data-related-config="[{
+                                           title: 'Hyperlinks',
+                                           filter: 'protocol:.*',
+                                           editActions: ['addOnlinesrc']}]"
+        />
+
+        <directive data-gn-associated-resources-panel="gnCurrentEdit.metadata" />
       </sidePanel>
 
       <tab id="default" default="true" mode="flat">
 
         <text ref="dutchProfileTitle"/>
         <text ref="dutchProfileDescription"/>
-
-        <directive data-gn-onlinesrc-list=""
-          types="thumbnail|onlinesrc|dataset|sibling|associated"/>
 
         <section name="dataIdentificatie">
 
@@ -1578,60 +1590,75 @@
       <sidePanel>
         <directive data-gn-validation-report=""/>
         <directive data-gn-suggestion-list=""/>
+
+        <directive data-gn-overview-manager=""
+                   data-file-types=".png,.gif,.jpeg,.jpg"
+                   data-editable-thumbnail="true" />
+
+        <directive data-gn-distribution-resources-panel="gnCurrentEdit.metadata"
+                   data-mode="viewConfig.distributionConfig.layout || ''"
+                   data-editor-config="default"
+                   data-related-config="[{
+                                           title: 'Hyperlinks',
+                                           filter: 'protocol:.*',
+                                           editActions: ['addOnlinesrc']}]"
+        />
+
+        <directive data-gn-associated-resources-panel="gnCurrentEdit.metadata" />
       </sidePanel>
 
       <tab id="identificationInfo" default="true">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset|sibling|associated"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:identificationInfo" or="identificationInfo"
                  in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="distributionInfo">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:distributionInfo" or="distributionInfo"
                  in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="dataQualityInfo">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo"
                  in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="spatialRepresentationInfo">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"
                  or="spatialRepresentationInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="referenceSystemInfo">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo"
                  in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="contentInfo" toggle="true">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:contentInfo" or="contentInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="portrayalCatalogueInfo" toggle="true">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
                  in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="metadata">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section name="metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
@@ -1658,21 +1685,21 @@
       <tab id="metadataConstraints" toggle="true">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:metadataConstraints" or="metadataConstraints"
                  in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="metadataMaintenance" toggle="true">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:metadataMaintenance" or="metadataMaintenance"
                  in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="applicationSchemaInfo" toggle="true">
         <text ref="fullViewTitle"/>
         <text ref="fullViewDescription"/>
-        <directive data-gn-onlinesrc-list="" types="thumbnail|onlinesrc|dataset"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo"
                  in="/gmd:MD_Metadata"/>
       </tab>
