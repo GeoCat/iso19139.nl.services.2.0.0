@@ -240,34 +240,34 @@
     <!-- Dataset title -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:title">
       <sch:let name="mdTitle" value="gco:CharacterString"/>
-      <sch:assert test="$mdTitle != ''">Titel van de bron ontbreekt</sch:assert>
+      <sch:assert test="$mdTitle != ''">Titel van de online bron ontbreekt</sch:assert>
     </sch:rule>
 
     <!-- Dataset abstract -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:abstract">
       <sch:let name="mdAbstract" value="gco:CharacterString"/>
-      <sch:assert test="$mdAbstract != ''">Samenvatting ontbreekt</sch:assert>
+      <sch:assert test="$mdAbstract != ''">Omschrijving van de inhoud van de online bron ontbreekt</sch:assert>
     </sch:rule>
 
     <!-- Dataset language -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:language">
       <sch:let name="mdLanguage" value="(*/@codeListValue = 'dut' or */@codeListValue = 'eng')"/>
 
-      <sch:assert test="$mdLanguage">De taal van de bron moet Nederlands of Engels zijn</sch:assert>
+      <sch:assert test="$mdLanguage">De taal van de online bron moet Nederlands of Engels zijn</sch:assert>
     </sch:rule>
 
     <!-- Dataset identifier -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:identifier/*/gmd:code">
       <sch:let name="mdIdentifier" value="./(gco:CharacterString|gmx:Anchor)/text()"/>
 
-      <sch:assert test="$mdIdentifier != ''">Unieke Identifier van de bron ontbreekt</sch:assert>
+      <sch:assert test="$mdIdentifier != ''">Unieke Identifier van de online bron ontbreekt</sch:assert>
     </sch:rule>
 
     <!-- Dataset contact -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/gmd:CI_ResponsibleParty/gmd:organisationName">
       <sch:let name="orgName" value="./(gco:CharacterString|gmx:Anchor)/text()"/>
 
-      <sch:assert test="$orgName != ''">Verantwoordelijke organisatie bron ontbreekt</sch:assert>
+      <sch:assert test="$orgName != ''">Naam van de verantwoordelijke organisatie van de online bron ontbreekt</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress">
@@ -275,28 +275,35 @@
 
       <sch:let name="isValidEmail" value="xslutil:isValidEmail($email)" />
 
-      <sch:assert test="$isValidEmail = true()">Verantwoordelijke organisatie bron e-mail ontbreekt of is ongeldig</sch:assert>
+      <sch:assert test="$isValidEmail = true()">E-mail van de verantwoordelijke organisatie van de online bron ontbreekt of is ongeldig</sch:assert>
     </sch:rule>
 
     <!-- Dataset thema -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
-      <sch:assert test="geonet:hasEuDcatApThemes(gmd:topicCategory)">Dataset category: a topic category or a INSPIRE Theme keyword is required</sch:assert>
+      <!-- Dataset thema -->
+      <sch:assert test="geonet:hasEuDcatApThemes(gmd:topicCategory)">Een INSPIRE thema trefwoord is vereist</sch:assert>
 
+      <!-- License -->
       <sch:assert test="geonet:isValidLicense(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) toegangs restricties is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
 
+      <!-- Rights -->
       <sch:assert test="geonet:isValidRights(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) gebruiksbeperking is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
+
+      <!-- Dataset contact -->
+      <sch:let name="hasContact" value="count(gmd:pointOfContact) > 0"/>
+      <sch:assert test="$hasContact = true()">Informatie die nodig is om contact op te nemen met de verantwoordelijke persoon of organisatie ontbreekt</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:status">
       <sch:let name="status" value="*/@codeListValue"/>
 
-      <sch:assert test="$status != ''">Status ontbreekt</sch:assert>
+      <sch:assert test="$status != ''">Status van de online bron ontbreekt</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:resourceMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency">
       <sch:let name="frequency" value="*/@codeListValue"/>
 
-      <sch:assert test="$frequency != ''">Herzieningsfrequentie ontbreekt</sch:assert>
+      <sch:assert test="$frequency != ''">Herzieningsfrequentie van de online bron ontbreekt</sch:assert>
     </sch:rule>
   </sch:pattern>
 
