@@ -9,6 +9,7 @@
   <sch:ns uri="http://www.isotc211.org/2005/gmd" prefix="gmd"/>
   <sch:ns uri="http://www.isotc211.org/2005/gco" prefix="gco"/>
   <sch:ns uri="http://www.isotc211.org/2005/gmx" prefix="gmx"/>
+  <sch:ns uri="http://www.isotc211.org/2005/srv" prefix="srv"/>
   <sch:ns uri="http://www.opengis.net/gml" prefix="gml"/>
   <sch:ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
   <sch:ns uri="http://www.w3.org/2001/XMLSchema-instance" prefix="xsi"/>
@@ -284,7 +285,7 @@
       <sch:assert test="$isValidUrl = true()">Verantwoordelijke organisatie bron resource URL is ongeldig</sch:assert>
     </sch:rule>
 
-    <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
+    <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
       <!-- Check thema with GEMET INSPIRE themes -->
       <sch:let name="nodes">
         <xsl:copy-of select="gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor/@xlink:href ='http://inspire.ec.europa.eu/theme']/gmd:keyword" />
