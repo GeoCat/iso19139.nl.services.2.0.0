@@ -23,10 +23,10 @@
 
 
   <!-- Function to check that the metadata has a topic category that can be mapped to EuDcatApThemes -->
+  <!-- Function to check that the metadata has a topic category that can be mapped to EuDcatApThemes -->
   <xsl:function name="geonet:hasEuDcatApThemes" as="xs:boolean">
     <xsl:param name="values"  as="node()*" />
 
-    <!--<xsl:message>$values: <xsl:value-of select="$values" /></xsl:message>-->
     <xsl:variable name="isoTopicToEuDcatApThemes"
                   as="node()*">
       <entry key="http://publications.europa.eu/resource/authority/data-theme/AGRI">
@@ -120,12 +120,11 @@
     </xsl:variable>
 
     <xsl:variable name="theme"
-      select="$isoTopicToEuDcatApThemes[
-      */text() = $values/*/text()
-      or */text() = $values/*/@xlink:href]/@key"/>
+                  select="$isoTopicToEuDcatApThemes[
+            */text() = $values//text()
+            or */text() = $values//@xlink:href]/@key"/>
 
-    <!--<xsl:message>$theme: <xsl:value-of select="$theme" /></xsl:message>-->
-    <xsl:value-of select="$theme != ''" />
+    <xsl:value-of select="count($theme) > 0" />
   </xsl:function>
 
 
@@ -159,7 +158,6 @@
 
           <xsl:if test="string($euDcatLicense)"><xsl:value-of select="$euDcatLicense" /></xsl:if>
         </xsl:if>
-
 
       </xsl:for-each>
 
@@ -278,10 +276,22 @@
       <sch:assert test="$isValidEmail = true()">E-mail van de verantwoordelijke organisatie van de online bron ontbreekt of is ongeldig</sch:assert>
     </sch:rule>
 
-    <!-- Dataset thema -->
+    <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage">
+      <sch:let name="url" value="gmd:URL"/>
+
+      <sch:let name="isValidUrl" value="starts-with(lower-case($url), 'http://') or starts-with(lower-case($url), 'https://')" />
+
+      <sch:assert test="$isValidUrl = true()">Verantwoordelijke organisatie bron resource URL is ongeldig</sch:assert>
+    </sch:rule>
+
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
-      <!-- Dataset thema -->
-      <sch:assert test="geonet:hasEuDcatApThemes(gmd:topicCategory)">Een INSPIRE thema trefwoord is vereist</sch:assert>
+      <!-- Check thema with GEMET INSPIRE themes -->
+      <sch:let name="nodes">
+        <xsl:copy-of select="gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor/@xlink:href ='http://inspire.ec.europa.eu/theme']/gmd:keyword" />
+      </sch:let>
+
+      <!-- Thema -->
+      <sch:assert test="geonet:hasEuDcatApThemes($nodes)">Een onderwerp categorie of een INSPIRE-thema trefwoord is vereist</sch:assert>
 
       <!-- License -->
       <sch:assert test="geonet:isValidLicense(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) toegangs restricties is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
