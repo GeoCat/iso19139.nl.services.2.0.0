@@ -279,7 +279,7 @@
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage">
       <sch:let name="url" value="gmd:URL"/>
 
-      <sch:let name="isValidUrl" value="starts-with(lower-case($url), 'http://') or starts-with(lower-case($url), 'https://')" />
+      <sch:let name="isValidUrl" value="($url = '') or starts-with(lower-case($url), 'http://') or starts-with(lower-case($url), 'https://')" />
 
       <sch:assert test="$isValidUrl = true()">Verantwoordelijke organisatie bron resource URL is ongeldig</sch:assert>
     </sch:rule>
