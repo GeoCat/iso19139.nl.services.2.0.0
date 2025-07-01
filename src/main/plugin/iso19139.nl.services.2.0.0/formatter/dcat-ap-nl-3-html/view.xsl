@@ -729,7 +729,7 @@ using the region API -->
                       <th>Toegangsrechten</th>
                       <td>
                         <xsl:variable name="rightsStatements">
-                          <xsl:for-each select="distinct-values($metadata/gmd:identificationInfo/*/gmd:resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor))">
+                          <xsl:for-each select="distinct-values($metadata/gmd:identificationInfo/*/gmd:resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor/@xlink:href))">
                             <xsl:variable name="dcatAccessType"
                                           select="$dcatApAccessTypes[(lower-case(.) = lower-case(current()) and not(@match)) or
                                                      (starts-with(lower-case(current()), lower-case(.)) and (@match = 'start'))] "/>
@@ -787,6 +787,37 @@ using the region API -->
                       </tr>
                     </xsl:if>
 
+
+                    <xsl:if test="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint[gmd:CI_OnlineResource/gmd:linkage/gmd:URL != '']">
+                      <tr>
+                        <th>Endpoint URL</th>
+                        <td>
+                          <xsl:for-each
+                            select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
+                            <xsl:variable name="endpointUrl" select="if (contains(., '?')) then substring-before(., '?') else ."/>
+                            <p style="word-break: break-all;">
+                              <a href="{$endpointUrl}" target="_blank" title="={$endpointUrl}">
+                                <xsl:value-of select="$endpointUrl"/>
+                              </a>
+                            </p>
+                          </xsl:for-each>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th>Endpoint description</th>
+                        <td>
+                          <xsl:for-each
+                            select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
+                            <p style="word-break: break-all;">
+                              <a href="{.}" target="_blank" title="={.}">
+                                <xsl:value-of select="."/>
+                              </a>
+                            </p>
+                          </xsl:for-each>
+                        </td>
+                      </tr>
+                    </xsl:if>
 
                     <xsl:if test="$metadata/gmd:identificationInfo/*/srv:operatesOn">
                       <tr>
