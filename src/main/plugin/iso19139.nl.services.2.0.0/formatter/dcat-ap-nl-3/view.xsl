@@ -6,4 +6,9 @@
                 exclude-result-prefixes="#all">
 
   <xsl:import href="../../../iso19139.nl.geografie.2.0.0/formatter/dcat-ap-nl-3/view.xsl"/>
+
+  <!-- Used for metadata that does not have ISO topic categories (for example, service metadata) and does not have also INSPIRE GEMET Themes keywords -->
+  <xsl:variable name="fallbackDcatApThemes" as="node()*">
+    <entry key="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+  </xsl:variable>
 </xsl:stylesheet>

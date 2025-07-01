@@ -392,6 +392,11 @@ using the region API -->
     </entry>
   </xsl:variable>
 
+  <!-- Used for metadata that does not have ISO topic categories (for example, service metadata) and does not have also INSPIRE GEMET Themes keywords -->
+  <xsl:variable name="fallbackDcatApThemes" as="node()*">
+    <entry key="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+  </xsl:variable>
+
   <xsl:variable name="dcatApThemesTranslations">
     <entry key="http://publications.europa.eu/resource/authority/data-theme/AGRI">Landbouw, visserij, bosbouw en voeding</entry>
     <entry key="http://publications.europa.eu/resource/authority/data-theme/ECON">Economie en financiën</entry>
@@ -692,17 +697,6 @@ using the region API -->
                     </xsl:if>
 
                     <xsl:variable name="themes">
-                      <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:topicCategory">
-                        <xsl:variable name="topicCategoryValue" select="*/text()" />
-                        <xsl:variable name="isoTopicTheme" select="$isoTopicToEuDcatApThemes[iso = $topicCategoryValue]/@key" />
-
-                        <xsl:if test="string($isoTopicTheme)">
-                          <xsl:variable name="translation" select="$dcatApThemesTranslations/entry[@key = $isoTopicTheme]" />
-                          <theme><xsl:value-of select="if (string($translation)) then $translation else $isoTopicTheme" /></theme>
-                        </xsl:if>
-
-                      </xsl:for-each>
-
                       <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[gmd:thesaurusName/*/gmd:title/*/text() = 'GEMET - INSPIRE themes, version 1.0']/gmd:keyword">
                         <xsl:variable name="gemetValue" select="gmx:Anchor/@xlink:href" />
                         <xsl:variable name="gemetTheme" select="$isoTopicToEuDcatApThemes[inspire = $gemetValue]/@key" />
@@ -714,16 +708,29 @@ using the region API -->
                       </xsl:for-each>
                     </xsl:variable>
 
-                    <xsl:if test="count($themes/*) > 0">
-                      <tr>
-                        <th>Thema</th>
-                        <td>
-                          <xsl:for-each-group select="$themes/theme" group-by=".">
-                            <xsl:value-of select="current-grouping-key()" /><xsl:if test="position() != last()">, </xsl:if>
-                          </xsl:for-each-group>
-                        </td>
-                      </tr>
-                    </xsl:if>
+                    <xsl:choose>
+                      <xsl:when test="count($themes/*) > 0">
+                        <tr>
+                          <th>Thema</th>
+                          <td>
+                            <xsl:for-each-group select="$themes/theme" group-by=".">
+                              <xsl:value-of select="current-grouping-key()" /><xsl:if test="position() != last()">, </xsl:if>
+                            </xsl:for-each-group>
+                          </td>
+                        </tr>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <tr>
+                          <th>Thema</th>
+                          <td>
+                            <xsl:for-each select="$fallbackDcatApThemes/@key">
+                              <xsl:variable name="translation" select="$dcatApThemesTranslations/entry[@key = current()]" />
+                              <xsl:value-of select="if (string($translation)) then $translation else ." /><xsl:if test="position() != last()">, </xsl:if>
+                            </xsl:for-each>
+                          </td>
+                        </tr>
+                      </xsl:otherwise>
+                    </xsl:choose>
 
                     <tr>
                       <th>Toegangsrechten</th>

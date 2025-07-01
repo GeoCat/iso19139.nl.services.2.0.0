@@ -219,7 +219,7 @@
 
     <xsl:variable name="rightsStatements">
 
-      <xsl:for-each select="distinct-values($resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor))">
+      <xsl:for-each select="distinct-values($resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor/@xlink:href))">
         <xsl:variable name="dcatAccessType"
                       select="$dcatApAccessTypes[(lower-case(.) = lower-case(current()) and not(@match)) or
                                                    (starts-with(lower-case(current()), lower-case(.)) and (@match = 'start'))] "/>
@@ -292,7 +292,7 @@
       </sch:let>
 
       <!-- Thema -->
-      <sch:assert test="geonet:hasEuDcatApThemes($nodes)">Een onderwerp categorie of een INSPIRE-thema trefwoord is vereist</sch:assert>
+      <sch:report test="not(geonet:hasEuDcatApThemes($nodes))">Een INSPIRE-thema trefwoord wordt aanbevolen</sch:report>
 
       <!-- License -->
       <sch:assert test="geonet:isValidLicense(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) toegangs restricties is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
@@ -303,7 +303,8 @@
       <!-- Dataset contact -->
       <sch:let name="hasContact" value="count(gmd:pointOfContact) > 0"/>
       <sch:assert test="$hasContact = true()">Informatie die nodig is om contact op te nemen met de verantwoordelijke persoon of organisatie ontbreekt</sch:assert>
-    </sch:rule>
+
+     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:status">
       <sch:let name="status" value="*/@codeListValue"/>
@@ -315,6 +316,35 @@
       <sch:let name="frequency" value="*/@codeListValue"/>
 
       <sch:assert test="$frequency != ''">Herzieningsfrequentie van de online bron ontbreekt</sch:assert>
+    </sch:rule>
+
+    <sch:rule context="//gmd:MD_Metadata/gmd:distributionInfo">
+      <!-- Endpoint URL and description: check at least 1 online resource: in Dutch schemas are stored automatically in srv:connectPoint,
+      used for these DCAT-AP NL elements. See update-fixed-info.xsl -->
+      <sch:let name="validDistributions" value="*/gmd:transferOptions/*/gmd:onLine[
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:WMS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:WMTS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:WFS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:WCS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:WPS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:SOS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'TMS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:CSW' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OAS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API features' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API tiles' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API styles' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API coverages' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API 3dgeovolumes' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:API maps' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:OLS' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OGC:SensorThings' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'W3C:SPARQL' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'OASIS:OData' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'landingpage' or
+      gmd:CI_OnlineResource/gmd:protocol/*/text() = 'INSPIRE Atom']"/>
+
+      <sch:assert test="count($validDistributions) > 0">De online bron moet ten minste één online resource bevatten met een geldige protocol waarde: OGC:WMS, OGC:WMTS, OGC:WFS, OGC:WCS, OGC:WPS, OGC:SOS, TMS, OGC:CSW, OAS, OGC:API features, OGC:API tiles, OGC:API styles, OGC:API 3dgeovolumes, OGC:API maps, OGC:OLS, OGC:SensorThings, W3C:SPARQL, OASIS:OData, landingpage, INSPIRE Atom</sch:assert>
     </sch:rule>
   </sch:pattern>
 
