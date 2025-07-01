@@ -32,38 +32,61 @@
                   as="node()*">
       <entry key="http://publications.europa.eu/resource/authority/data-theme/AGRI">
         <inspire>http://inspire.ec.europa.eu/theme/af</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/af</inspire>
         <iso>farming</iso>
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/ECON">
         <inspire>http://inspire.ec.europa.eu/theme/cp</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/cp</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/lu</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/lu</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/mr</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/mr</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/pf</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/pf</inspire>
         <iso>economy</iso>
         <iso>planningCadastre</iso>
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/EDUC"></entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/ENER">
         <inspire>http://inspire.ec.europa.eu/theme/er</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/er</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/mr</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/mr</inspire>
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/ENVI">
         <inspire>http://inspire.ec.europa.eu/theme/hy</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/hy</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/ps</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/ps</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/lc</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/lc</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/am</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/am</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/ac</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/ac</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/br</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/br</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/ef</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/ef</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/hb</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/hb</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/lu</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/lu</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/mr</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/mr</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/nz</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/nz</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/of</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/of</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/sr</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/sr</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/so</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/so</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/sd</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/sd</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/mf</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/mf</inspire>
         <iso>biota</iso>
         <iso>environment</iso>
         <iso>inlandWaters</iso>
@@ -72,10 +95,13 @@
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/GOVE">
         <inspire>http://inspire.ec.europa.eu/theme/au</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/au</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/us</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/us</inspire>
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/HEAL">
         <inspire>http://inspire.ec.europa.eu/theme/hh</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/hh</inspire>
         <iso>health</iso>
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/INTR"></entry>
@@ -83,14 +109,23 @@
       <entry key="http://publications.europa.eu/resource/authority/data-theme/OP_DATPRO"></entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/REGI">
         <inspire>http://inspire.ec.europa.eu/theme/ad</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/ad</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/rs</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/rs</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/gg</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/gg</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/cp</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/cp</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/gn</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/gn</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/el</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/el</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/ge</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/ge</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/oi</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/oi</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/bu</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/bu</inspire>
         <iso>planningCadastre</iso>
         <iso>boundaries</iso>
         <iso>elevation</iso>
@@ -98,7 +133,9 @@
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/SOCI">
         <inspire>http://inspire.ec.europa.eu/theme/pd</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/pd</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/su</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/su</inspire>
         <iso>location</iso>
         <iso>society</iso>
         <iso>disaster</iso>
@@ -107,13 +144,18 @@
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/TECH">
         <inspire>http://inspire.ec.europa.eu/theme/hy</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/hy</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/ge</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/ge</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/oi</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/oi</inspire>
         <inspire>http://inspire.ec.europa.eu/theme/mf</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/mf</inspire>
         <iso>geoscientificInformation</iso>
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/TRAN">
         <inspire>http://inspire.ec.europa.eu/theme/tn</inspire>
+        <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/tn</inspire>
         <iso>structure</iso>
         <iso>transportation</iso>
         <iso>utilitiesCommunication</iso>
