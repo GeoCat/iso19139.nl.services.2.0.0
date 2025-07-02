@@ -579,417 +579,419 @@ using the region API -->
 
     <div class="container-fluid gn-metadata-view gn-schema-{$schema}">
       <article class="gn-md-view gn-metadata-display">
-        <div class="col-md-9">
-          <h1><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:title/*/text()"/></h1>
+        <div class="row">
+          <div class="col-md-9">
+            <h1><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:title/*/text()"/></h1>
 
-          <tabset id="detail-tabset" type="tabs" justified="false">
-            <tab
-              heading="Datadienst"
-            >
-              <div>
-                <table class="table table-striped">
-                  <tbody>
-                    <tr>
-                      <th>Titel</th>
-                      <td>
-                        <xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:title/*/text()"/>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th>Beschrijving</th>
-                      <td>
-                        <xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:abstract/*/text()"/>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th>Taal</th>
-                      <td>
-                        <xsl:value-of select="if (string($metadata/gmd:language/*/@codeListValue))
-                                        then $languageMap/entry[@key = $metadata/gmd:language/*/@codeListValue]
-                                        else $metadata/gmd:language/*/text()"/>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th>Identificatie</th>
-                      <td>
-                        <xsl:value-of select="$metadata/gmd:fileIdentifier/*/text()"/>
-                      </td>
-                    </tr>
-
-                    <xsl:variable name="issuedDateTypes" select="$isoDateTypeToDcatCommonNames[@key='dct:issued']" />
-
-                    <!-- issued dates -->
-                    <xsl:variable name="issuedDates">
-                      <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:date">
-                        <xsl:sort select="." order="descending" />
-
-                        <xsl:variable name="dateType"
-                                      as="xs:string?"
-                                      select="*/gmd:dateType/*/@codeListValue"/>
-                        <xsl:variable name="dcatElementName"
-                                      as="xs:string?"
-                                      select="$issuedDateTypes[. = $dateType]/@key"/>
-                        <xsl:if test="string($dcatElementName)">
-                          <date><xsl:value-of select="*/gmd:date/*/text()" /></date>
-                        </xsl:if>
-                      </xsl:for-each>
-                    </xsl:variable>
-
-                    <xsl:if test="count($issuedDates/*) > 0">
+            <tabset id="detail-tabset" type="tabs" justified="false">
+              <tab
+                heading="Datadienst"
+              >
+                <div>
+                  <table class="table table-striped">
+                    <tbody>
                       <tr>
-                        <th>Uitgegeven</th>
+                        <th>Titel</th>
                         <td>
-                          <xsl:value-of select="$issuedDates/*[1]"/>
+                          <xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:title/*/text()"/>
                         </td>
                       </tr>
-                    </xsl:if>
 
-                    <!-- modified dates -->
-                    <xsl:variable name="modifiedDateTypes" select="$isoDateTypeToDcatCommonNames[@key='dct:modified']" />
-
-                    <xsl:variable name="modifiedDates">
-                      <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:date">
-                        <xsl:sort select="." order="descending" />
-                        <xsl:variable name="dateType"
-                                      as="xs:string?"
-                                      select="*/gmd:dateType/*/@codeListValue"/>
-                        <xsl:variable name="dcatElementName"
-                                      as="xs:string?"
-                                      select="$modifiedDateTypes[. = $dateType]/@key"/>
-                        <xsl:if test="string($dcatElementName)">
-                          <date><xsl:value-of select="*/gmd:date/*/text()" /></date>
-                        </xsl:if>
-                      </xsl:for-each>
-                    </xsl:variable>
-
-                    <xsl:if test="count($modifiedDates/*) > 0">
                       <tr>
-                        <th>Aangepast</th>
+                        <th>Beschrijving</th>
                         <td>
-                          <xsl:value-of select="$modifiedDates/*[1]"/>
+                          <xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:abstract/*/text()"/>
                         </td>
                       </tr>
-                    </xsl:if>
 
-                    <xsl:if test="count($metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[string(*/text())]) > 0">
                       <tr>
-                        <th>Trefwoord</th>
+                        <th>Taal</th>
                         <td>
-                          <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[string(*/text())]">
-                            <xsl:variable name="keywordValue" select="*/text()" />
-                            <a
-                              href=""
-                              title="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
-                              aria-label="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
-                              data-ng-click="filterBy('tag.default', '{$keywordValue}')"
-                            >
-                              <xsl:variable name="firstChar" select="substring($keywordValue,1,1)"/>
-
-                              <xsl:value-of select="translate($firstChar,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/><xsl:value-of select="substring-after($keywordValue,$firstChar)"/>
-                            </a>
-                            <xsl:if test="position() != last()">, </xsl:if>
-                          </xsl:for-each>
+                          <xsl:value-of select="if (string($metadata/gmd:language/*/@codeListValue))
+                                          then $languageMap/entry[@key = $metadata/gmd:language/*/@codeListValue]
+                                          else $metadata/gmd:language/*/text()"/>
                         </td>
                       </tr>
-                    </xsl:if>
 
-                    <xsl:variable name="themes">
-                      <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[gmd:thesaurusName/*/gmd:title/*/text() = 'GEMET - INSPIRE themes, version 1.0']/gmd:keyword">
-                        <xsl:variable name="gemetValue" select="gmx:Anchor/@xlink:href" />
-                        <xsl:variable name="gemetTheme" select="$isoTopicToEuDcatApThemes[inspire = $gemetValue]/@key" />
+                      <tr>
+                        <th>Identificatie</th>
+                        <td>
+                          <xsl:value-of select="$metadata/gmd:fileIdentifier/*/text()"/>
+                        </td>
+                      </tr>
 
-                        <xsl:for-each select="$gemetTheme">
-                          <xsl:variable name="translation" select="$dcatApThemesTranslations/entry[@key = current()]" />
-                          <theme><xsl:value-of select="if (string($translation)) then $translation else ." /></theme>
+                      <xsl:variable name="issuedDateTypes" select="$isoDateTypeToDcatCommonNames[@key='dct:issued']" />
+
+                      <!-- issued dates -->
+                      <xsl:variable name="issuedDates">
+                        <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:date">
+                          <xsl:sort select="." order="descending" />
+
+                          <xsl:variable name="dateType"
+                                        as="xs:string?"
+                                        select="*/gmd:dateType/*/@codeListValue"/>
+                          <xsl:variable name="dcatElementName"
+                                        as="xs:string?"
+                                        select="$issuedDateTypes[. = $dateType]/@key"/>
+                          <xsl:if test="string($dcatElementName)">
+                            <date><xsl:value-of select="*/gmd:date/*/text()" /></date>
+                          </xsl:if>
                         </xsl:for-each>
-                      </xsl:for-each>
-                    </xsl:variable>
+                      </xsl:variable>
 
-                    <xsl:choose>
-                      <xsl:when test="count($themes/*) > 0">
+                      <xsl:if test="count($issuedDates/*) > 0">
                         <tr>
-                          <th>Thema</th>
+                          <th>Uitgegeven</th>
                           <td>
-                            <xsl:for-each-group select="$themes/theme" group-by=".">
-                              <xsl:value-of select="current-grouping-key()" /><xsl:if test="position() != last()">, </xsl:if>
-                            </xsl:for-each-group>
+                            <xsl:value-of select="$issuedDates/*[1]"/>
                           </td>
                         </tr>
-                      </xsl:when>
-                      <xsl:otherwise>
+                      </xsl:if>
+
+                      <!-- modified dates -->
+                      <xsl:variable name="modifiedDateTypes" select="$isoDateTypeToDcatCommonNames[@key='dct:modified']" />
+
+                      <xsl:variable name="modifiedDates">
+                        <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:date">
+                          <xsl:sort select="." order="descending" />
+                          <xsl:variable name="dateType"
+                                        as="xs:string?"
+                                        select="*/gmd:dateType/*/@codeListValue"/>
+                          <xsl:variable name="dcatElementName"
+                                        as="xs:string?"
+                                        select="$modifiedDateTypes[. = $dateType]/@key"/>
+                          <xsl:if test="string($dcatElementName)">
+                            <date><xsl:value-of select="*/gmd:date/*/text()" /></date>
+                          </xsl:if>
+                        </xsl:for-each>
+                      </xsl:variable>
+
+                      <xsl:if test="count($modifiedDates/*) > 0">
                         <tr>
-                          <th>Thema</th>
+                          <th>Aangepast</th>
                           <td>
-                            <xsl:for-each select="$fallbackDcatApThemes/@key">
-                              <xsl:variable name="translation" select="$dcatApThemesTranslations/entry[@key = current()]" />
-                              <xsl:value-of select="if (string($translation)) then $translation else ." /><xsl:if test="position() != last()">, </xsl:if>
+                            <xsl:value-of select="$modifiedDates/*[1]"/>
+                          </td>
+                        </tr>
+                      </xsl:if>
+
+                      <xsl:if test="count($metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[string(*/text())]) > 0">
+                        <tr>
+                          <th>Trefwoord</th>
+                          <td>
+                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[string(*/text())]">
+                              <xsl:variable name="keywordValue" select="*/text()" />
+                              <a
+                                href=""
+                                title="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
+                                aria-label="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
+                                data-ng-click="filterBy('tag.default', '{$keywordValue}')"
+                              >
+                                <xsl:variable name="firstChar" select="substring($keywordValue,1,1)"/>
+
+                                <xsl:value-of select="translate($firstChar,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/><xsl:value-of select="substring-after($keywordValue,$firstChar)"/>
+                              </a>
+                              <xsl:if test="position() != last()">, </xsl:if>
                             </xsl:for-each>
                           </td>
                         </tr>
-                      </xsl:otherwise>
-                    </xsl:choose>
+                      </xsl:if>
 
-                    <tr>
-                      <th>Toegangsrechten</th>
-                      <td>
-                        <xsl:variable name="rightsStatements">
-                          <xsl:for-each select="distinct-values($metadata/gmd:identificationInfo/*/gmd:resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor/@xlink:href))">
-                            <xsl:variable name="dcatAccessType"
-                                          select="$dcatApAccessTypes[(lower-case(.) = lower-case(current()) and not(@match)) or
-                                                     (starts-with(lower-case(current()), lower-case(.)) and (@match = 'start'))] "/>
-                            <xsl:if test="$dcatAccessType">
-                              <right key="{$dcatAccessType/@key}" />
-                            </xsl:if>
+                      <xsl:variable name="themes">
+                        <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[gmd:thesaurusName/*/gmd:title/*/text() = 'GEMET - INSPIRE themes, version 1.0']/gmd:keyword">
+                          <xsl:variable name="gemetValue" select="gmx:Anchor/@xlink:href" />
+                          <xsl:variable name="gemetTheme" select="$isoTopicToEuDcatApThemes[inspire = $gemetValue]/@key" />
+
+                          <xsl:for-each select="$gemetTheme">
+                            <xsl:variable name="translation" select="$dcatApThemesTranslations/entry[@key = current()]" />
+                            <theme><xsl:value-of select="if (string($translation)) then $translation else ." /></theme>
                           </xsl:for-each>
-                        </xsl:variable>
+                        </xsl:for-each>
+                      </xsl:variable>
 
-                        <xsl:if test="count($rightsStatements/right) > 0">
-                          <xsl:choose>
-                            <xsl:when test="$rightsStatements/right[1]/@key = 'http://publications.europa.eu/resource/authority/access-right/PUBLIC'">
-                              Publiek
-                            </xsl:when>
-                            <xsl:when test="$rightsStatements/right[1]/@key = 'http://publications.europa.eu/resource/authority/access-right/RESTRICTED'">
-                              Beperkt
-                            </xsl:when>
-                          </xsl:choose>
-                        </xsl:if>
+                      <xsl:choose>
+                        <xsl:when test="count($themes/*) > 0">
+                          <tr>
+                            <th>Thema</th>
+                            <td>
+                              <xsl:for-each-group select="$themes/theme" group-by=".">
+                                <xsl:value-of select="current-grouping-key()" /><xsl:if test="position() != last()">, </xsl:if>
+                              </xsl:for-each-group>
+                            </td>
+                          </tr>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <tr>
+                            <th>Thema</th>
+                            <td>
+                              <xsl:for-each select="$fallbackDcatApThemes/@key">
+                                <xsl:variable name="translation" select="$dcatApThemesTranslations/entry[@key = current()]" />
+                                <xsl:value-of select="if (string($translation)) then $translation else ." /><xsl:if test="position() != last()">, </xsl:if>
+                              </xsl:for-each>
+                            </td>
+                          </tr>
+                        </xsl:otherwise>
+                      </xsl:choose>
+
+                      <tr>
+                        <th>Toegangsrechten</th>
+                        <td>
+                          <xsl:variable name="rightsStatements">
+                            <xsl:for-each select="distinct-values($metadata/gmd:identificationInfo/*/gmd:resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor/@xlink:href))">
+                              <xsl:variable name="dcatAccessType"
+                                            select="$dcatApAccessTypes[(lower-case(.) = lower-case(current()) and not(@match)) or
+                                                       (starts-with(lower-case(current()), lower-case(.)) and (@match = 'start'))] "/>
+                              <xsl:if test="$dcatAccessType">
+                                <right key="{$dcatAccessType/@key}" />
+                              </xsl:if>
+                            </xsl:for-each>
+                          </xsl:variable>
+
+                          <xsl:if test="count($rightsStatements/right) > 0">
+                            <xsl:choose>
+                              <xsl:when test="$rightsStatements/right[1]/@key = 'http://publications.europa.eu/resource/authority/access-right/PUBLIC'">
+                                Publiek
+                              </xsl:when>
+                              <xsl:when test="$rightsStatements/right[1]/@key = 'http://publications.europa.eu/resource/authority/access-right/RESTRICTED'">
+                                Beperkt
+                              </xsl:when>
+                            </xsl:choose>
+                          </xsl:if>
+                        </td>
+                      </tr>
+
+                      <xsl:if test="count($licenses) > 0">
+                        <tr>
+                          <th>Licentie</th>
+                          <td>
+                            <xsl:choose>
+                              <xsl:when test="starts-with($licenses[1], 'http')">
+                                <a href="{$licenses[1]}" target="_blank"><xsl:value-of select="$licenses[1]" /></a>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="$licenses[1]" />
+                              </xsl:otherwise>
+                            </xsl:choose>
+                          </td>
+                        </tr>
+                      </xsl:if>
+
+                      <xsl:if test="count($metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']) > 0">
+                        <tr>
+                          <th>Conforms to</th>
+                          <td>
+                            <xsl:for-each
+                                    select="$metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']/*/gmd:specification">
+                              <xsl:variable name="specificationTitle" select="*/gmd:title/*/text()"/>
+                              <xsl:variable name="specificationHref"
+                                            select="*/gmd:title/*/@xlink:href"/>
+                              <p>
+                                <a href="{$specificationHref}" target="_blank">
+                                  <xsl:value-of select="$specificationTitle"/>
+                                </a>
+                              </p>
+                            </xsl:for-each>
+                          </td>
+                        </tr>
+                      </xsl:if>
+
+
+                      <xsl:if test="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint[gmd:CI_OnlineResource/gmd:linkage/gmd:URL != '']">
+                        <tr>
+                          <th>Endpoint URL</th>
+                          <td>
+                            <xsl:for-each
+                              select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
+                              <xsl:variable name="endpointUrl" select="if (contains(., '?')) then substring-before(., '?') else ."/>
+                              <p style="word-break: break-all;">
+                                <a href="{$endpointUrl}" target="_blank" title="={$endpointUrl}">
+                                  <xsl:value-of select="$endpointUrl"/>
+                                </a>
+                              </p>
+                            </xsl:for-each>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th>Endpoint description</th>
+                          <td>
+                            <xsl:for-each
+                              select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
+                              <p style="word-break: break-all;">
+                                <a href="{.}" target="_blank" title="={.}">
+                                  <xsl:value-of select="."/>
+                                </a>
+                              </p>
+                            </xsl:for-each>
+                          </td>
+                        </tr>
+                      </xsl:if>
+
+                      <xsl:if test="$metadata/gmd:identificationInfo/*/srv:operatesOn">
+                        <tr>
+                          <th>Serveert dataset</th>
+                          <td>
+                            <xsl:for-each
+                                    select="$metadata/gmd:identificationInfo/*/srv:operatesOn">
+                              <p style="word-break: break-all;">
+                                <a href="{@xlink:href}" target="_blank" title="={@xlink:href}">
+                                  <xsl:value-of select="@xlink:href"/>
+                                </a>
+                              </p>
+                            </xsl:for-each>
+                          </td>
+                        </tr>
+                      </xsl:if>
+
+                    </tbody>
+
+                  </table>
+                </div>
+              </tab>
+              <tab
+                heading="Contact gevegens"
+              >
+                <!-- Obtain default iso contact mappings to DCAT contacts -->
+                <xsl:variable name="contactsMapping">
+                  <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
+                    <xsl:variable name="role"
+                                  as="xs:string?"
+                                  select="*/gmd:role/*/@codeListValue"/>
+
+                    <xsl:variable name="dcatElementConfig"
+                                  as="node()?"
+                                  select="$isoContactRoleToDcatCommonNames[. = $role]"/>
+
+                    <xsl:if test="$dcatElementConfig">
+                      <xsl:copy-of select="$dcatElementConfig" />
+                    </xsl:if>
+                    <!--<xsl:message>dcatElementConfig: <xsl:copy-of select="$dcatElementConfig" /></xsl:message>-->
+                  </xsl:for-each>
+                </xsl:variable>
+
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <th>Creator</th>
+                      <td>
+                        <xsl:choose>
+                          <xsl:when test="$contactsMapping/entry[@key='dct:creator']">
+                            <xsl:message>if: dct:creator</xsl:message>
+                            <xsl:variable name="mappingRole" select="$contactsMapping/entry[@key='dct:creator']" />
+                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
+                              <xsl:variable name="role"
+                                            as="xs:string?"
+                                            select="*/gmd:role/*/@codeListValue"/>
+
+                              <xsl:if test="$role = $mappingRole">
+                                <p><xsl:value-of select="*/gmd:organisationName/*/text()" /></p>
+                                <p><i class="fa fa-fw fa-envelope"></i><a href="mailto:{*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
+                                <xsl:if test="string(*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
+                                  <p><i class="fa fa-fw fa-link"></i><a href="{*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
+                                </xsl:if>
+                              </xsl:if>
+                            </xsl:for-each>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:message>otherwise dct:creator</xsl:message>
+                            <xsl:variable name="dcatElementConfig">
+                              <value name="dct:creator" as="{$isoContactRoleToDcatCommonNames/entry[@key = 'dct:creator']/@as}"/>
+                            </xsl:variable>
+
+                            <p><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:organisationName/*/text()" /></p>
+                            <p><i class="fa fa-fw fa-envelope"></i> <a href="mailto:{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
+                            <xsl:if test="string($metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
+                              <p><i class="fa fa-fw fa-link"></i><a href="{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
+                            </xsl:if>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </td>
                     </tr>
 
-                    <xsl:if test="count($licenses) > 0">
-                      <tr>
-                        <th>Licentie</th>
-                        <td>
-                          <xsl:choose>
-                            <xsl:when test="starts-with($licenses[1], 'http')">
-                              <a href="{$licenses[1]}" target="_blank"><xsl:value-of select="$licenses[1]" /></a>
-                            </xsl:when>
-                            <xsl:otherwise>
-                              <xsl:value-of select="$licenses[1]" />
-                            </xsl:otherwise>
-                          </xsl:choose>
-                        </td>
-                      </tr>
-                    </xsl:if>
+                    <tr>
+                      <th>Publisher</th>
+                      <td>
+                        <xsl:choose>
+                          <xsl:when test="$contactsMapping/entry[@key='dct:publisher']">
+                            <xsl:message>if: dct:publisher</xsl:message>
+                            <xsl:variable name="mappingRole" select="$contactsMapping/entry[@key='dct:publisher']" />
+                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
+                              <xsl:variable name="role"
+                                            as="xs:string?"
+                                            select="*/gmd:role/*/@codeListValue"/>
 
-                    <xsl:if test="count($metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']) > 0">
-                      <tr>
-                        <th>Conforms to</th>
-                        <td>
-                          <xsl:for-each
-                                  select="$metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']/*/gmd:specification">
-                            <xsl:variable name="specificationTitle" select="*/gmd:title/*/text()"/>
-                            <xsl:variable name="specificationHref"
-                                          select="*/gmd:title/*/@xlink:href"/>
-                            <p>
-                              <a href="{$specificationHref}" target="_blank">
-                                <xsl:value-of select="$specificationTitle"/>
-                              </a>
-                            </p>
-                          </xsl:for-each>
-                        </td>
-                      </tr>
-                    </xsl:if>
+                              <xsl:if test="$role = $mappingRole">
+                                <p><xsl:value-of select="*/gmd:organisationName/*/text()" /></p>
+                                <p><i class="fa fa-fw fa-envelope"></i><a href="mailto:{*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
+                                <xsl:if test="string(*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
+                                  <p><i class="fa fa-fw fa-link"></i><a href="{*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
+                                </xsl:if>
+                              </xsl:if>
+                            </xsl:for-each>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:message>otherwise dct:publisher</xsl:message>
+                            <xsl:variable name="dcatElementConfig">
+                              <value name="dct:creator" as="{$isoContactRoleToDcatCommonNames/entry[@key = 'dct:publisher']/@as}"/>
+                            </xsl:variable>
 
+                            <p><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:organisationName/*/text()" /></p>
+                            <p><i class="fa fa-fw fa-envelope"></i> <a href="mailto:{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
+                            <xsl:if test="string($metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
+                              <p><i class="fa fa-fw fa-link"></i><a href="{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
+                            </xsl:if>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </td>
+                    </tr>
 
-                    <xsl:if test="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint[gmd:CI_OnlineResource/gmd:linkage/gmd:URL != '']">
-                      <tr>
-                        <th>Endpoint URL</th>
-                        <td>
-                          <xsl:for-each
-                            select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
-                            <xsl:variable name="endpointUrl" select="if (contains(., '?')) then substring-before(., '?') else ."/>
-                            <p style="word-break: break-all;">
-                              <a href="{$endpointUrl}" target="_blank" title="={$endpointUrl}">
-                                <xsl:value-of select="$endpointUrl"/>
-                              </a>
-                            </p>
-                          </xsl:for-each>
-                        </td>
-                      </tr>
+                    <tr>
+                      <th>Contact point</th>
+                      <td>
+                        <xsl:choose>
+                          <xsl:when test="$contactsMapping/entry[@key='dct:contactPoint']">
+                            <xsl:message>if: dct:contactPoint</xsl:message>
+                            <xsl:variable name="mappingRole" select="$contactsMapping/entry[@key='dct:contactPoint']" />
+                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
+                              <xsl:variable name="role"
+                                            as="xs:string?"
+                                            select="*/gmd:role/*/@codeListValue"/>
 
-                      <tr>
-                        <th>Endpoint description</th>
-                        <td>
-                          <xsl:for-each
-                            select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
-                            <p style="word-break: break-all;">
-                              <a href="{.}" target="_blank" title="={.}">
-                                <xsl:value-of select="."/>
-                              </a>
-                            </p>
-                          </xsl:for-each>
-                        </td>
-                      </tr>
-                    </xsl:if>
+                              <xsl:if test="$role = $mappingRole">
+                                <p><xsl:value-of select="*/gmd:organisationName/*/text()" /></p>
+                                <p><i class="fa fa-fw fa-envelope"></i><a href="mailto:{*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
+                                <xsl:if test="string(*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
+                                  <p><i class="fa fa-fw fa-link"></i><a href="{*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
+                                </xsl:if>
+                              </xsl:if>
+                            </xsl:for-each>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:message>otherwise dct:publisher</xsl:message>
+                            <xsl:variable name="dcatElementConfig">
+                              <value name="dct:creator" as="{$isoContactRoleToDcatCommonNames/entry[@key = 'dct:publisher']/@as}"/>
+                            </xsl:variable>
 
-                    <xsl:if test="$metadata/gmd:identificationInfo/*/srv:operatesOn">
-                      <tr>
-                        <th>Serveert dataset</th>
-                        <td>
-                          <xsl:for-each
-                                  select="$metadata/gmd:identificationInfo/*/srv:operatesOn">
-                            <p style="word-break: break-all;">
-                              <a href="{@xlink:href}" target="_blank" title="={@xlink:href}">
-                                <xsl:value-of select="@xlink:href"/>
-                              </a>
-                            </p>
-                          </xsl:for-each>
-                        </td>
-                      </tr>
-                    </xsl:if>
-
+                            <p><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:organisationName/*/text()" /></p>
+                            <p><i class="fa fa-fw fa-envelope"></i> <a href="mailto:{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
+                            <xsl:if test="string($metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
+                              <p><i class="fa fa-fw fa-link"></i><a href="{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
+                            </xsl:if>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </td>
+                    </tr>
                   </tbody>
-
                 </table>
-              </div>
-            </tab>
-            <tab
-              heading="Contact gevegens"
-            >
-              <!-- Obtain default iso contact mappings to DCAT contacts -->
-              <xsl:variable name="contactsMapping">
-                <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
-                  <xsl:variable name="role"
-                                as="xs:string?"
-                                select="*/gmd:role/*/@codeListValue"/>
+              </tab>
+            </tabset>
+          </div>
 
-                  <xsl:variable name="dcatElementConfig"
-                                as="node()?"
-                                select="$isoContactRoleToDcatCommonNames[. = $role]"/>
+          <div class="gn-md-side gn-md-side-advanced col-md-3">
+          <xsl:apply-templates mode="getOverviews" select="$metadata"/>
+          <xsl:apply-templates mode="getExtent" select="$metadata"/>
 
-                  <xsl:if test="$dcatElementConfig">
-                    <xsl:copy-of select="$dcatElementConfig" />
-                  </xsl:if>
-                  <!--<xsl:message>dcatElementConfig: <xsl:copy-of select="$dcatElementConfig" /></xsl:message>-->
-                </xsl:for-each>
-              </xsl:variable>
-
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <th>Creator</th>
-                    <td>
-                      <xsl:choose>
-                        <xsl:when test="$contactsMapping/entry[@key='dct:creator']">
-                          <xsl:message>if: dct:creator</xsl:message>
-                          <xsl:variable name="mappingRole" select="$contactsMapping/entry[@key='dct:creator']" />
-                          <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
-                            <xsl:variable name="role"
-                                          as="xs:string?"
-                                          select="*/gmd:role/*/@codeListValue"/>
-
-                            <xsl:if test="$role = $mappingRole">
-                              <p><xsl:value-of select="*/gmd:organisationName/*/text()" /></p>
-                              <p><i class="fa fa-fw fa-envelope"></i><a href="mailto:{*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
-                              <xsl:if test="string(*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
-                                <p><i class="fa fa-fw fa-link"></i><a href="{*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
-                              </xsl:if>
-                            </xsl:if>
-                          </xsl:for-each>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <xsl:message>otherwise dct:creator</xsl:message>
-                          <xsl:variable name="dcatElementConfig">
-                            <value name="dct:creator" as="{$isoContactRoleToDcatCommonNames/entry[@key = 'dct:creator']/@as}"/>
-                          </xsl:variable>
-
-                          <p><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:organisationName/*/text()" /></p>
-                          <p><i class="fa fa-fw fa-envelope"></i> <a href="mailto:{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
-                          <xsl:if test="string($metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
-                            <p><i class="fa fa-fw fa-link"></i><a href="{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
-                          </xsl:if>
-                        </xsl:otherwise>
-                      </xsl:choose>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <th>Publisher</th>
-                    <td>
-                      <xsl:choose>
-                        <xsl:when test="$contactsMapping/entry[@key='dct:publisher']">
-                          <xsl:message>if: dct:publisher</xsl:message>
-                          <xsl:variable name="mappingRole" select="$contactsMapping/entry[@key='dct:publisher']" />
-                          <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
-                            <xsl:variable name="role"
-                                          as="xs:string?"
-                                          select="*/gmd:role/*/@codeListValue"/>
-
-                            <xsl:if test="$role = $mappingRole">
-                              <p><xsl:value-of select="*/gmd:organisationName/*/text()" /></p>
-                              <p><i class="fa fa-fw fa-envelope"></i><a href="mailto:{*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
-                              <xsl:if test="string(*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
-                                <p><i class="fa fa-fw fa-link"></i><a href="{*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
-                              </xsl:if>
-                            </xsl:if>
-                          </xsl:for-each>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <xsl:message>otherwise dct:publisher</xsl:message>
-                          <xsl:variable name="dcatElementConfig">
-                            <value name="dct:creator" as="{$isoContactRoleToDcatCommonNames/entry[@key = 'dct:publisher']/@as}"/>
-                          </xsl:variable>
-
-                          <p><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:organisationName/*/text()" /></p>
-                          <p><i class="fa fa-fw fa-envelope"></i> <a href="mailto:{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
-                          <xsl:if test="string($metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
-                            <p><i class="fa fa-fw fa-link"></i><a href="{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
-                          </xsl:if>
-                        </xsl:otherwise>
-                      </xsl:choose>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <th>Contact point</th>
-                    <td>
-                      <xsl:choose>
-                        <xsl:when test="$contactsMapping/entry[@key='dct:contactPoint']">
-                          <xsl:message>if: dct:contactPoint</xsl:message>
-                          <xsl:variable name="mappingRole" select="$contactsMapping/entry[@key='dct:contactPoint']" />
-                          <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
-                            <xsl:variable name="role"
-                                          as="xs:string?"
-                                          select="*/gmd:role/*/@codeListValue"/>
-
-                            <xsl:if test="$role = $mappingRole">
-                              <p><xsl:value-of select="*/gmd:organisationName/*/text()" /></p>
-                              <p><i class="fa fa-fw fa-envelope"></i><a href="mailto:{*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
-                              <xsl:if test="string(*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
-                                <p><i class="fa fa-fw fa-link"></i><a href="{*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
-                              </xsl:if>
-                            </xsl:if>
-                          </xsl:for-each>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <xsl:message>otherwise dct:publisher</xsl:message>
-                          <xsl:variable name="dcatElementConfig">
-                            <value name="dct:creator" as="{$isoContactRoleToDcatCommonNames/entry[@key = 'dct:publisher']/@as}"/>
-                          </xsl:variable>
-
-                          <p><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:organisationName/*/text()" /></p>
-                          <p><i class="fa fa-fw fa-envelope"></i> <a href="mailto:{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()" /></a></p>
-                          <xsl:if test="string($metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL)">
-                            <p><i class="fa fa-fw fa-link"></i><a href="{$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL}"><xsl:value-of select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/*/gmd:contactInfo/*/gmd:onlineResource/*/gmd:linkage/gmd:URL" /></a></p>
-                          </xsl:if>
-                        </xsl:otherwise>
-                      </xsl:choose>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </tab>
-          </tabset>
-        </div>
-
-        <div class="gn-md-side gn-md-side-advanced col-md-3">
-        <xsl:apply-templates mode="getOverviews" select="$metadata"/>
-        <xsl:apply-templates mode="getExtent" select="$metadata"/>
-
+          </div>
         </div>
       </article>
     </div>
