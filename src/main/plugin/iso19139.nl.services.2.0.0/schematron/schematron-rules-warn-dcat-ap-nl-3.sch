@@ -190,6 +190,9 @@
 
       <!-- Service identifier present -->
       <sch:assert test="gmd:citation/*/gmd:identifier/gmd:MD_Identifier/gmd:code">Unieke Identifier van de online bron aanbevolen</sch:assert>
+
+      <!-- Keywords -->
+      <sch:assert test="gmd:descriptiveKeywords/*/gmd:keyword[gmx:Anchor/@xlink:href != '' or gco:CharacterString != '']">Trefwoorden voor datasets worden aanbevolen</sch:assert>
     </sch:rule>
   </sch:pattern>
 
