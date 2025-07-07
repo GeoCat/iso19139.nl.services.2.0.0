@@ -585,7 +585,7 @@ using the region API -->
 
             <tabset id="detail-tabset" type="tabs" justified="false">
               <tab
-                heading="Datadienst"
+                heading="Service"
               >
                 <div>
                   <table class="table table-striped">
@@ -641,7 +641,7 @@ using the region API -->
 
                       <xsl:if test="count($issuedDates/*) > 0">
                         <tr>
-                          <th>Uitgegeven</th>
+                          <th>Datum van de bron (aangemaakt) </th>
                           <td>
                             <xsl:value-of select="$issuedDates/*[1]"/>
                           </td>
@@ -668,7 +668,7 @@ using the region API -->
 
                       <xsl:if test="count($modifiedDates/*) > 0">
                         <tr>
-                          <th>Aangepast</th>
+                          <th>Datum van de bron (laatste wijziging) </th>
                           <td>
                             <xsl:value-of select="$modifiedDates/*[1]"/>
                           </td>
@@ -677,7 +677,7 @@ using the region API -->
 
                       <xsl:if test="count($metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[string(*/text())]) > 0">
                         <tr>
-                          <th>Trefwoord</th>
+                          <th>Trefwoorden</th>
                           <td>
                             <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[string(*/text())]">
                               <xsl:variable name="keywordValue" select="*/text()" />
@@ -734,7 +734,7 @@ using the region API -->
                       </xsl:choose>
 
                       <tr>
-                        <th>Toegangsrechten</th>
+                        <th>Gebruiksbeperkingen</th>
                         <td>
                           <xsl:variable name="rightsStatements">
                             <xsl:for-each select="distinct-values($metadata/gmd:identificationInfo/*/gmd:resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor/@xlink:href))">
@@ -778,7 +778,7 @@ using the region API -->
 
                       <xsl:if test="count($metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']) > 0">
                         <tr>
-                          <th>Conforms to</th>
+                          <th>Conformiteit met specificatie</th>
                           <td>
                             <xsl:for-each
                                     select="$metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']/*/gmd:specification">
@@ -798,7 +798,7 @@ using the region API -->
 
                       <xsl:if test="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint[gmd:CI_OnlineResource/gmd:linkage/gmd:URL != '']">
                         <tr>
-                          <th>Endpoint URL</th>
+                          <th>Service URL</th>
                           <td>
                             <xsl:for-each
                               select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
@@ -813,7 +813,7 @@ using the region API -->
                         </tr>
 
                         <tr>
-                          <th>Endpoint description</th>
+                          <th>Service URL beschrijving</th>
                           <td>
                             <xsl:for-each
                               select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
@@ -829,7 +829,7 @@ using the region API -->
 
                       <xsl:if test="$metadata/gmd:identificationInfo/*/srv:operatesOn">
                         <tr>
-                          <th>Serveert dataset</th>
+                          <th>Gerelateerde dataset</th>
                           <td>
                             <xsl:for-each
                                     select="$metadata/gmd:identificationInfo/*/srv:operatesOn">
@@ -872,7 +872,7 @@ using the region API -->
                 <table class="table table-striped">
                   <tbody>
                     <tr>
-                      <th>Creator</th>
+                      <th>Aanmaker</th>
                       <td>
                         <xsl:choose>
                           <xsl:when test="$contactsMapping/entry[@key='dct:creator']">
@@ -909,7 +909,7 @@ using the region API -->
                     </tr>
 
                     <tr>
-                      <th>Publisher</th>
+                      <th>Publiceerder</th>
                       <td>
                         <xsl:choose>
                           <xsl:when test="$contactsMapping/entry[@key='dct:publisher']">
@@ -946,7 +946,7 @@ using the region API -->
                     </tr>
 
                     <tr>
-                      <th>Contact point</th>
+                      <th>Contactpunt</th>
                       <td>
                         <xsl:choose>
                           <xsl:when test="$contactsMapping/entry[@key='dct:contactPoint']">
