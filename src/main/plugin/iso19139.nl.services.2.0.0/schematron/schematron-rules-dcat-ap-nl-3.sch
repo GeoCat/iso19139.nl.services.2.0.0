@@ -165,7 +165,7 @@
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
       <!-- Service title present -->
-      <sch:assert test="gmd:citation/*/gmd:title">>Titel van de online bron ontbreekt</sch:assert>
+      <sch:assert test="gmd:citation/*/gmd:title">Titel van de online bron ontbreekt</sch:assert>
 
       <!-- Service abstract present -->
       <sch:assert test="gmd:abstract">Omschrijving van de inhoud van de online bron ontbreekt</sch:assert>
