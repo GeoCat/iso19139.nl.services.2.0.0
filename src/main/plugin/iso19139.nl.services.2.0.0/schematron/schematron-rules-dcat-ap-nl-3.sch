@@ -131,20 +131,20 @@
     <!-- Service title -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:citation/*/gmd:title">
       <sch:let name="mdTitle" value="gco:CharacterString"/>
-      <sch:assert test="$mdTitle != ''">Titel van de online bron ontbreekt</sch:assert>
+      <sch:assert test="$mdTitle != ''">Titel van de service ontbreekt</sch:assert>
     </sch:rule>
 
     <!-- Service abstract -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:abstract">
       <sch:let name="mdAbstract" value="gco:CharacterString"/>
-      <sch:assert test="$mdAbstract != ''">Omschrijving van de inhoud van de online bron ontbreekt</sch:assert>
+      <sch:assert test="$mdAbstract != ''">Omschrijving van de inhoud van de service ontbreekt</sch:assert>
     </sch:rule>
 
     <!-- Service contact -->
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/gmd:CI_ResponsibleParty/gmd:organisationName">
       <sch:let name="orgName" value="./(gco:CharacterString|gmx:Anchor)/text()"/>
 
-      <sch:assert test="$orgName != ''">Naam van de verantwoordelijke organisatie van de online bron ontbreekt</sch:assert>
+      <sch:assert test="$orgName != ''">Naam van de verantwoordelijke organisatie van de service ontbreekt</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress">
@@ -152,7 +152,7 @@
 
       <sch:let name="isValidEmail" value="xslutil:isValidEmail($email)" />
 
-      <sch:assert test="$isValidEmail = true()">E-mail van de verantwoordelijke organisatie van de online bron ontbreekt of is ongeldig</sch:assert>
+      <sch:assert test="$isValidEmail = true()">E-mail van de verantwoordelijke organisatie van de service ontbreekt of is ongeldig</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:pointOfContact[1]/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage">
@@ -165,13 +165,13 @@
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
       <!-- Service title present -->
-      <sch:assert test="gmd:citation/*/gmd:title">Titel van de online bron ontbreekt</sch:assert>
+      <sch:assert test="gmd:citation/*/gmd:title">Titel van de service ontbreekt</sch:assert>
 
       <!-- Service abstract present -->
-      <sch:assert test="gmd:abstract">Omschrijving van de inhoud van de online bron ontbreekt</sch:assert>
+      <sch:assert test="gmd:abstract">Omschrijving van de inhoud van de service ontbreekt</sch:assert>
 
       <!-- Service status present -->
-      <sch:assert test="gmd:status">Status van de online bron ontbreekt</sch:assert>
+      <sch:assert test="gmd:status">Status van de service ontbreekt</sch:assert>
 
       <!-- License -->
       <sch:assert test="geonet:isValidLicense(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) toegangs restricties is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
@@ -193,7 +193,7 @@
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:resourceMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency">
       <sch:let name="frequency" value="*/@codeListValue"/>
 
-      <sch:assert test="$frequency != ''">Herzieningsfrequentie van de online bron ontbreekt</sch:assert>
+      <sch:assert test="$frequency != ''">Herzieningsfrequentie van de service ontbreekt</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata">
