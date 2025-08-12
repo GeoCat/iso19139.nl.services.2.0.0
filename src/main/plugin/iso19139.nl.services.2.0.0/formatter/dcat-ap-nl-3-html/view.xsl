@@ -112,7 +112,7 @@ to render the different views -->
   </xsl:template>
 
   <xsl:template mode="getExtent" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    <xsl:if test=".//gmd:identificationInfo/*/gmd:extent/*/gmd:geographicElement[gmd:EX_GeographicBoundingBox or gmd:EX_BoundingPolygon]">
+    <xsl:if test=".//gmd:identificationInfo/*/srv:extent/*/gmd:geographicElement[gmd:EX_GeographicBoundingBox or gmd:EX_BoundingPolygon]">
       <section class="gn-md-side-extent">
         <h2>
           <i class="fa fa-fw fa-map-marker"></i>
