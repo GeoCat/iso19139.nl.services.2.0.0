@@ -477,6 +477,7 @@ using the region API -->
 
   <xsl:variable name="isoContactRoleToDcatCommonNames"
                 as="node()*">
+    <entry key="dct:creator" as="foaf">originator</entry>
     <entry key="dct:creator" as="foaf">author</entry>
     <!-- Add this? -->
     <!--<entry key="dct:creator" as="foaf">originator</entry>-->
@@ -843,6 +844,20 @@ using the region API -->
                         </tr>
                       </xsl:if>
 
+                      <xsl:if test="count($metadata/gmd:distributionInfo/*/gmd:transferOptions/*/gmd:onLine[string(*/gmd:linkage/*/text()) and
+                                            */gmd:protocol/gmx:Anchor/@xlink:href='https://www.w3.org/TR/vocab-dcat-2/#Property:resource_landing_page']) > 0">
+
+                        <tr>
+                          <th>Landingspagina</th>
+                          <td>
+                            <xsl:for-each select="$metadata/gmd:distributionInfo/*/gmd:transferOptions/*/gmd:onLine[string(*/gmd:linkage/*/text()) and
+                                            */gmd:protocol/gmx:Anchor/@xlink:href='https://www.w3.org/TR/vocab-dcat-2/#Property:resource_landing_page']">
+                              <a href="{*/gmd:linkage/*/text()}" target="_blank" ><xsl:value-of select="*/gmd:linkage/*/text()" /></a>
+                            </xsl:for-each>
+                          </td>
+                        </tr>
+                      </xsl:if>
+
                     </tbody>
 
                   </table>
@@ -876,9 +891,26 @@ using the region API -->
                       <td>
                         <xsl:choose>
                           <xsl:when test="$contactsMapping/entry[@key='dct:creator']">
-                            <xsl:message>if: dct:creator</xsl:message>
                             <xsl:variable name="mappingRole" select="$contactsMapping/entry[@key='dct:creator']" />
-                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact">
+
+                            <xsl:variable name="rolesForCreator" select="$isoContactRoleToDcatCommonNames[@key = 'dct:creator']/text()" />
+
+                            <xsl:variable name="contactsToProcess"
+                                          select="$metadata/gmd:identificationInfo/*/gmd:pointOfContact[gmd:CI_ResponsibleParty/gmd:role/*/@codeListValue = $rolesForCreator]" />
+
+                            <!-- Sorted contacts to process with rolesForCreator ordering -->
+                            <xsl:variable name="contactsToProcessSorted">
+                              <xsl:for-each select="$rolesForCreator">
+                                <xsl:variable name="creatorRole" select="." />
+
+                                <xsl:if test="count($contactsToProcess[gmd:CI_ResponsibleParty/gmd:role/*/@codeListValue = $creatorRole]) > 0">
+
+                                  <xsl:copy-of select="$contactsToProcess[gmd:CI_ResponsibleParty/gmd:role/*/@codeListValue = $creatorRole]" />
+                                </xsl:if>
+                              </xsl:for-each>
+                            </xsl:variable>
+
+                            <xsl:for-each select="$contactsToProcessSorted/*[1]">
                               <xsl:variable name="role"
                                             as="xs:string?"
                                             select="*/gmd:role/*/@codeListValue"/>
