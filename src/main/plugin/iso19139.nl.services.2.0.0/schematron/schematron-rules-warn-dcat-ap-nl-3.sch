@@ -182,7 +182,8 @@
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
       <!-- Check thema with GEMET INSPIRE themes -->
       <sch:let name="nodes">
-        <xsl:copy-of select="gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor/@xlink:href ='http://inspire.ec.europa.eu/theme']/gmd:keyword" />
+        <xsl:copy-of select="gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor/@xlink:href = 'http://inspire.ec.europa.eu/theme' or
+                                                                     gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor/@xlink:href = 'http://www.eionet.europa.eu/gemet/inspire_themes']/gmd:keyword" />
       </sch:let>
 
       <!-- Thema -->
