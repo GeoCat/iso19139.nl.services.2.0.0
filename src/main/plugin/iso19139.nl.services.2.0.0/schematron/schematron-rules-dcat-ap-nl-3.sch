@@ -49,7 +49,9 @@
             or matches(@rdf:about,
             concat('https?://', $licenseUriWithoutHttp, '/?'))]"/>
 
-          <xsl:if test="string($euDcatLicense)"><xsl:value-of select="$euDcatLicense" /></xsl:if>
+          <xsl:if test="count($euDcatLicense) = 1">
+            <xsl:if test="string($euDcatLicense/skos:prefLabel[@xml:lang = 'nl'])"><xsl:value-of select="$euDcatLicense/skos:prefLabel[@xml:lang = 'nl']" /></xsl:if>
+          </xsl:if>
         </xsl:if>
 
       </xsl:for-each>
