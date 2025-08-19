@@ -681,23 +681,9 @@ using the region API -->
                         <tr>
                           <th>Trefwoorden</th>
                           <td>
-                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[string(gco:CharacterString/text())]">
-                              <xsl:variable name="keywordValue" select="gco:CharacterString/text()" />
-                              <a
-                                href=""
-                                title="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
-                                aria-label="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
-                                data-ng-click="filterBy('tag.default', '{$keywordValue}')"
-                              >
-                                <xsl:variable name="firstChar" select="substring($keywordValue,1,1)"/>
-
-                                <xsl:value-of select="translate($firstChar,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/><xsl:value-of select="substring-after($keywordValue,$firstChar)"/>
-                              </a>
-                              <xsl:if test="position() != last()">, </xsl:if>
-                            </xsl:for-each>
-
-                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[gmd:thesaurusName/*/gmd:title/*/text() != 'GEMET - INSPIRE themes, version 1.0']/gmd:keyword[string(gco:CharacterString/text())]">
-                              <xsl:variable name="keywordValue" select="gco:CharacterString/text()" />
+                            <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName) or
+                                                        gmd:thesaurusName/*/gmd:title/*/text() != 'GEMET - INSPIRE themes, version 1.0']/gmd:keyword[string((gco:CharacterString|gmx:Anchor)/text())]">
+                              <xsl:variable name="keywordValue" select="(gco:CharacterString|gmx:Anchor)/text()" />
                               <a
                                 href=""
                                 title="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
