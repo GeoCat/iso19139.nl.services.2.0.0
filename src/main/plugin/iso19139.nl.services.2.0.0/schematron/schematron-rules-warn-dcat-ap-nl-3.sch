@@ -176,7 +176,7 @@
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/*/gmd:identifier/gmd:MD_Identifier/gmd:code">
       <sch:let name="mdIdentifier" value="./(gco:CharacterString|gmx:Anchor)/text()"/>
 
-      <sch:assert test="$mdIdentifier != ''">Unieke Identifier van de service aanbevolen</sch:assert>
+      <sch:assert test="$mdIdentifier != ''">Unieke Identifier van de service ontbreekt</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
@@ -190,7 +190,7 @@
       <sch:assert test="geonet:hasEuDcatApThemes($nodes)">Een INSPIRE-thema trefwoord wordt aanbevolen</sch:assert>
 
       <!-- Service identifier present -->
-      <sch:assert test="gmd:citation/*/gmd:identifier/gmd:MD_Identifier/gmd:code">Unieke Identifier van de service aanbevolen</sch:assert>
+      <sch:assert test="gmd:citation/*/gmd:identifier/gmd:MD_Identifier/gmd:code">Unieke Identifier van de service ontbreekt</sch:assert>
 
       <!-- Keywords -->
       <sch:assert test="gmd:descriptiveKeywords/*/gmd:keyword[gmx:Anchor/@xlink:href != '' or gco:CharacterString != '']">Trefwoorden voor datasets worden aanbevolen</sch:assert>
