@@ -61,72 +61,6 @@
     <xsl:value-of select="normalize-space($licenses) != ''" />
   </xsl:function>
 
-
-  <!-- Function to check that the rights are a valid one for DCAT-AP NL -->
-  <xsl:function name="geonet:isValidRights" as="xs:boolean">
-    <xsl:param name="resourceConstraints"  as="node()*" />
-
-    <xsl:variable name="dcatApAccessTypes" as="node()*">
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">unrestricted</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">licenceUnrestricted</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">restricted</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">private</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/CONFIDENTIAL">confidential</entry>
-
-      <!-- TODO: review with dct:rights -->
-      <!--<entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e</entry>-->
-
-      <!-- Dutch specific -->
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">Geen beperkingen</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC" match="start">Naamsvermelding verplicht,</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/publicdomain/mark/1.0/deed.nl</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/publicdomain/zero/1.0/deed.nl</entry>
-
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by/3.0/deed.nl</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by/4.0/deed.nl</entry>
-
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Gelijk Delen, Naamsvermelding verplicht,</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-sa/3.0/deed.nl</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-sa/4.0/deed.nl</entry>
-
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Niet Commercieel, Naamsvermelding verplicht </entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc/3.0/deed.nl</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc/4.0/deed.nl</entry>
-
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Niet Commercieel, Gelijk Delen, Naamsvermelding verplicht,</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-sa/3.0/deed.nl</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-sa/4.0/deed.nl</entry>
-
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Geen Afgeleide Werken, Naamsvermelding verplicht,</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nd/3.0/deed.nl</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nd/4.0/deed.nl</entry>
-
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Niet Commercieel, Geen Afgeleide Werken, Naamsvermelding verplicht,</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-nd/3.0/deed.nl</entry>
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-nd/4.0/deed.nl</entry>
-
-      <!-- TODO: review other allowed values related to this license -->
-      <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">Geo Gedeeld licentie</entry>
-    </xsl:variable>
-
-
-    <xsl:variable name="rightsStatements">
-
-      <xsl:for-each select="distinct-values($resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor/@xlink:href))">
-        <xsl:variable name="dcatAccessType"
-                      select="$dcatApAccessTypes[(lower-case(.) = lower-case(current()) and not(@match)) or
-                                                   (starts-with(lower-case(current()), lower-case(.)) and (@match = 'start'))] "/>
-
-        <xsl:if test="$dcatAccessType">
-          <right key="{$dcatAccessType/@key}" />
-        </xsl:if>
-      </xsl:for-each>
-    </xsl:variable>
-
-    <xsl:value-of select="count($rightsStatements/right) > 0" />
-  </xsl:function>
-
   <sch:pattern>
     <sch:title>Validatie tegen het DCAT-AP NL 3.0 metadata profiel</sch:title>
 
@@ -171,12 +105,9 @@
 
       <!-- Service abstract present -->
       <sch:assert test="gmd:abstract">Omschrijving van de inhoud van de service ontbreekt</sch:assert>
-
+      
       <!-- License -->
       <sch:assert test="geonet:isValidLicense(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) toegangs restricties is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
-
-      <!-- Rights -->
-      <sch:assert test="geonet:isValidRights(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) gebruiksbeperking is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
 
       <!-- Service contact present -->
       <sch:let name="hasContact" value="count(gmd:pointOfContact) > 0"/>
