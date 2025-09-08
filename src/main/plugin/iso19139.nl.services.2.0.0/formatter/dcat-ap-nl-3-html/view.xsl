@@ -422,8 +422,23 @@ using the region API -->
     <entry key="http://publications.europa.eu/resource/authority/access-right/CONFIDENTIAL">confidential</entry>
 
     <!-- TODO: review with dct:rights -->
-    <!--<entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e</entry>-->
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1a</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1b</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1c</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1d</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1f</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1g</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1h</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1a</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1b</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1c</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1d</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1f</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1g</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC">http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1h</entry>
 
     <!-- Dutch specific -->
     <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">Geen beperkingen</entry>
@@ -434,28 +449,28 @@ using the region API -->
     <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by/3.0/deed.nl</entry>
     <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by/4.0/deed.nl</entry>
 
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Gelijk Delen, Naamsvermelding verplicht,</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-sa/3.0/deed.nl</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-sa/4.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC" match="start">Gelijk Delen, Naamsvermelding verplicht,</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-sa/3.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-sa/4.0/deed.nl</entry>
 
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Niet Commercieel, Naamsvermelding verplicht </entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc/3.0/deed.nl</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc/4.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC" match="start">Niet Commercieel, Naamsvermelding verplicht </entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc/3.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc/4.0/deed.nl</entry>
 
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Niet Commercieel, Gelijk Delen, Naamsvermelding verplicht,</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-sa/3.0/deed.nl</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-sa/4.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC" match="start">Niet Commercieel, Gelijk Delen, Naamsvermelding verplicht,</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc-sa/3.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc-sa/4.0/deed.nl</entry>
 
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Geen Afgeleide Werken, Naamsvermelding verplicht,</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nd/3.0/deed.nl</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nd/4.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC" match="start">Geen Afgeleide Werken, Naamsvermelding verplicht,</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nd/3.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nd/4.0/deed.nl</entry>
 
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED" match="start">Niet Commercieel, Geen Afgeleide Werken, Naamsvermelding verplicht,</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-nd/3.0/deed.nl</entry>
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">http://creativecommons.org/licenses/by-nc-nd/4.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC" match="start">Niet Commercieel, Geen Afgeleide Werken, Naamsvermelding verplicht,</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc-nd/3.0/deed.nl</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc-nd/4.0/deed.nl</entry>
 
     <!-- TODO: review other allowed values related to this license -->
-    <entry key="http://publications.europa.eu/resource/authority/access-right/RESTRICTED">Geo Gedeeld licentie</entry>
+    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">Geo Gedeeld licentie</entry>
   </xsl:variable>
 
   <xsl:variable name="isMappingResourceConstraintsToEuVocabulary"
@@ -491,7 +506,7 @@ using the region API -->
 
   <xsl:variable name="isoDateTypeToDcatCommonNames"
                 as="node()*">
-    <entry key="dct:issued">creation</entry>
+    <entry key="dct:modified">creation</entry>
     <entry key="dct:issued">publication</entry>
     <entry key="dct:modified">revision</entry>
   </xsl:variable>
@@ -737,29 +752,30 @@ using the region API -->
                       </xsl:choose>
 
                       <tr>
-                        <th>Gebruiksbeperkingen</th>
+                        <th>Toegangsrechten</th>
                         <td>
-                          <xsl:variable name="rightsStatements">
+                          <!-- Check if there are non PUBLIC constraints -->
+                          <xsl:variable name="rightsStatementsNonPublic">
                             <xsl:for-each select="distinct-values($metadata/gmd:identificationInfo/*/gmd:resourceConstraints/*[gmd:accessConstraints]/gmd:otherConstraints/(gco:CharacterString|gmx:Anchor/@xlink:href))">
                               <xsl:variable name="dcatAccessType"
                                             select="$dcatApAccessTypes[(lower-case(.) = lower-case(current()) and not(@match)) or
-                                                       (starts-with(lower-case(current()), lower-case(.)) and (@match = 'start'))] "/>
-                              <xsl:if test="$dcatAccessType">
+                                                   (starts-with(lower-case(current()), lower-case(.)) and (@match = 'start'))] "/>
+
+                              <xsl:if test="$dcatAccessType/@key != 'http://publications.europa.eu/resource/authority/access-right/PUBLIC'">
                                 <right key="{$dcatAccessType/@key}" />
                               </xsl:if>
                             </xsl:for-each>
                           </xsl:variable>
 
-                          <xsl:if test="count($rightsStatements/right) > 0">
-                            <xsl:choose>
-                              <xsl:when test="$rightsStatements/right[1]/@key = 'http://publications.europa.eu/resource/authority/access-right/PUBLIC'">
-                                Publiek
-                              </xsl:when>
-                              <xsl:when test="$rightsStatements/right[1]/@key = 'http://publications.europa.eu/resource/authority/access-right/RESTRICTED'">
-                                Beperkt
-                              </xsl:when>
-                            </xsl:choose>
-                          </xsl:if>
+                          <!-- If there are non PUBLIC constraints, use the first one, otherwise use PUBLIC -->
+                          <xsl:choose>
+                            <xsl:when test="count($rightsStatementsNonPublic/right) > 0">
+                              Beperkt
+                            </xsl:when>
+                            <xsl:otherwise>
+                              Publiek
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </td>
                       </tr>
 
