@@ -799,17 +799,19 @@ using the region API -->
                         <tr>
                           <th>Conformiteit met specificatie</th>
                           <td>
-                            <xsl:for-each
-                                    select="$metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']/*/gmd:specification">
-                              <xsl:variable name="specificationTitle" select="*/gmd:title/*/text()"/>
-                              <xsl:variable name="specificationHref"
-                                            select="*/gmd:title/*/@xlink:href"/>
-                              <p>
-                                <a href="{$specificationHref}" target="_blank">
-                                  <xsl:value-of select="$specificationTitle"/>
-                                </a>
-                              </p>
-                            </xsl:for-each>
+                            <ul style="padding-left: 1em;">
+                              <xsl:for-each
+                                      select="$metadata/gmd:dataQualityInfo/*/gmd:report/*/gmd:result[*/gmd:pass/*/text() = 'true']/*/gmd:specification">
+                                <xsl:variable name="specificationTitle" select="*/gmd:title/*/text()"/>
+                                <xsl:variable name="specificationHref"
+                                              select="*/gmd:title/*/@xlink:href"/>
+                                <li>
+                                  <a href="{$specificationHref}" target="_blank">
+                                    <xsl:value-of select="$specificationTitle"/>
+                                  </a>
+                                </li>
+                              </xsl:for-each>
+                            </ul>
                           </td>
                         </tr>
                       </xsl:if>
