@@ -816,19 +816,29 @@ using the region API -->
                         </tr>
                       </xsl:if>
 
+                      <xsl:variable name="endpointDescriptionUrlExpression"
+                                    as="xs:string"
+                                    select="'GetCapabilities|WSDL'"/>
+                      <xsl:variable name="endpointDescriptionProtocolsExpression"
+                                    as="xs:string"
+                                    select="'OpenAPI|Swagger|GetCapabilities|WSDL|Description'"/>
 
                       <xsl:if test="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint[gmd:CI_OnlineResource/gmd:linkage/gmd:URL != '']">
                         <tr>
                           <th>Service URL</th>
                           <td>
                             <xsl:for-each
-                              select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
-                              <xsl:variable name="endpointUrl" select="if (contains(., '?')) then substring-before(., '?') else ."/>
-                              <p style="word-break: break-all;">
-                                <a href="{$endpointUrl}" target="_blank" title="={$endpointUrl}">
-                                  <xsl:value-of select="$endpointUrl"/>
-                                </a>
-                              </p>
+                              select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage[matches(gmd:protocol/(gco:CharacterString|gmd:Anchor)/text(), $endpointDescriptionProtocolsExpression, 'i')
+                                        or matches(gmd:URL/text(), $endpointDescriptionUrlExpression, 'i')
+                                        or gmd:function/*/@codeListValue = 'information']/gmd:URL">
+                              <xsl:if test="position() = 1">
+                                <xsl:variable name="endpointUrl" select="if (contains(., '?')) then substring-before(., '?') else ."/>
+                                <p style="word-break: break-all;">
+                                  <a href="{$endpointUrl}" target="_blank" title="={$endpointUrl}">
+                                    <xsl:value-of select="$endpointUrl"/>
+                                  </a>
+                                </p>
+                              </xsl:if>
                             </xsl:for-each>
                           </td>
                         </tr>
@@ -837,12 +847,16 @@ using the region API -->
                           <th>Service URL beschrijving</th>
                           <td>
                             <xsl:for-each
-                              select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
-                              <p style="word-break: break-all;">
-                                <a href="{.}" target="_blank" title="={.}">
-                                  <xsl:value-of select="."/>
-                                </a>
-                              </p>
+                              select="$metadata/gmd:identificationInfo/*/srv:containsOperations/*/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage[matches(gmd:protocol/(gco:CharacterString|gmd:Anchor)/text(), $endpointDescriptionProtocolsExpression, 'i')
+                                        or matches(gmd:URL/text(), $endpointDescriptionUrlExpression, 'i')
+                                        or gmd:function/*/@codeListValue = 'information']/gmd:URL">
+                              <xsl:if test="position() = 1">
+                                <p style="word-break: break-all;">
+                                  <a href="{.}" target="_blank" title="={.}">
+                                    <xsl:value-of select="."/>
+                                  </a>
+                                </p>
+                              </xsl:if>
                             </xsl:for-each>
                           </td>
                         </tr>
