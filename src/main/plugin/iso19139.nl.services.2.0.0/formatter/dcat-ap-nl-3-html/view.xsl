@@ -911,7 +911,7 @@ using the region API -->
 
                       <xsl:if test="count($licenses) > 0">
                         <tr>
-                          <th>Licentie</th>
+                          <th>Licenties</th>
                           <td>
                             <xsl:choose>
                               <xsl:when test="starts-with($licenses[1], 'http')">
