@@ -818,9 +818,9 @@ using the region API -->
                               <xsl:variable name="keywordValue" select="(gco:CharacterString|gmx:Anchor)/text()" />
                               <a
                                 href=""
-                                title="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
-                                aria-label="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{$keywordValue}' | capitalize}}}}"
-                                data-ng-click="filterBy('tag.default', '{$keywordValue}')"
+                                title="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{replace($keywordValue, '''', '\\''')}' | capitalize}}}}"
+                                aria-label="{{{{ 'clickToFilterOn' | translate }}}} {{{{'{replace($keywordValue, '''', '\\''')}' | capitalize}}}}"
+                                data-ng-click="filterBy('tag.default', '{replace($keywordValue, '''', '\\''')}')"
                               >
                                 <xsl:variable name="firstChar" select="substring($keywordValue,1,1)"/>
 
