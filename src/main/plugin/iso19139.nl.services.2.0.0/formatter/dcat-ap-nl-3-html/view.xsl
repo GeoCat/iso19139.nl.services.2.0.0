@@ -747,7 +747,7 @@ using the region API -->
                       </tr>
 
                       <tr>
-                        <th>Identificatie</th>
+                        <th>Unieke identifier</th>
                         <td>
                           <xsl:value-of select="$metadata/gmd:fileIdentifier/*/text()"/>
                         </td>
@@ -1028,7 +1028,7 @@ using the region API -->
                 </div>
               </tab>
               <tab
-                heading="Contact gevegens"
+                heading="Contact gegevens"
               >
                 <!-- Obtain default iso contact mappings to DCAT contacts -->
                 <xsl:variable name="contactsMapping">
