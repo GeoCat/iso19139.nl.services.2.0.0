@@ -137,9 +137,7 @@
         <inspire>http://www.eionet.europa.eu/gemet/nl/inspire-theme/su</inspire>
         <iso>location</iso>
         <iso>society</iso>
-        <iso>disaster</iso>
         <iso>intelligenceMilitary</iso>
-        <iso>extraTerrestrial</iso>
       </entry>
       <entry key="http://publications.europa.eu/resource/authority/data-theme/TECH">
         <inspire>http://inspire.ec.europa.eu/theme/hy</inspire>
