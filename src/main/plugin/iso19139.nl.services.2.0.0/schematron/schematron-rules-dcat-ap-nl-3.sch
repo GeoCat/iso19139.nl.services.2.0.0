@@ -105,19 +105,13 @@
 
       <!-- Service abstract present -->
       <sch:assert test="gmd:abstract">Omschrijving van de inhoud van de service ontbreekt</sch:assert>
-      
+
       <!-- License -->
       <sch:assert test="geonet:isValidLicense(gmd:resourceConstraints)">Een geldige Creative Commons-licentie voor Overige beperkingen / (Juridische) toegangs restricties is vereist. Zie https://definities.geostandaarden.nl/dcat-ap-nl/nl/</sch:assert>
 
       <!-- Service contact present -->
       <sch:let name="hasContact" value="count(gmd:pointOfContact) > 0"/>
       <sch:assert test="$hasContact = true()">Informatie die nodig is om contact op te nemen met de verantwoordelijke persoon of organisatie ontbreekt</sch:assert>
-    </sch:rule>
-
-    <sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/*/gmd:resourceMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency">
-      <sch:let name="frequency" value="*/@codeListValue"/>
-
-      <sch:assert test="$frequency != ''">Herzieningsfrequentie van de service ontbreekt</sch:assert>
     </sch:rule>
 
     <sch:rule context="//gmd:MD_Metadata">
