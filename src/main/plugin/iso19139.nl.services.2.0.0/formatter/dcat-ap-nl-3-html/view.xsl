@@ -604,16 +604,16 @@ using the region API -->
 
   <xsl:variable name="isoStatusToDublinCore"
                 as="node()*">
-    <entry key="completed">COMPLETED</entry>
-    <entry key="deprecated">DEPRECATED</entry>
-    <entry key="underDevelopment">DEVELOP</entry>
-    <entry key="onGoing">DEVELOP</entry>
-    <entry key="planned">DEVELOP</entry>
-    <entry key="required">DEVELOP</entry>
-    <entry key="obsolete">DISCONT</entry>
-    <entry key="historicalArchive">DISCONT</entry>
+    <entry key="completed">Voltooid</entry>
+    <entry key="deprecated">Verouderd</entry>
+    <entry key="underDevelopment">In ontwikkeling</entry>
+    <entry key="onGoing">In ontwikkeling</entry>
+    <entry key="planned">In ontwikkeling</entry>
+    <entry key="required">In ontwikkeling</entry>
+    <entry key="obsolete">Stopgezet</entry>
+    <entry key="historicalArchive">Stopgezet</entry>
     <!--<entry key="">OP_DATPRO</entry>-->
-    <entry key="withdrawn">WITHDRAWN</entry>
+    <entry key="withdrawn">Ingetrokken</entry>
   </xsl:variable>
 
   <xsl:variable name="isoContactRoleToDcatCommonNames"
