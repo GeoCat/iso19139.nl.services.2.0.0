@@ -323,10 +323,10 @@
     <table for="gmd:CI_ResponsibleParty">
       <header>
         <!-- TODO: Add label from strings.xml / label with context-->
-        <col label="individualName"/>
-        <col label="organisationName" class="gn-required"/>
-        <col label="electronicMailAddress" class="gn-required"/>
-        <col label="role" class="gn-required"/>
+        <col label="gmd:individualName"/>
+        <col label="gmd:organisationName" class="gn-required"/>
+        <col label="gmd:electronicMailAddress" class="gn-required"/>
+        <col label="gmd:role" class="gn-required"/>
         <col/>
       </header>
       <row>

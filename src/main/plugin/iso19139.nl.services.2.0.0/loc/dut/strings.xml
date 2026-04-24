@@ -302,5 +302,9 @@
   <valueUnit>Eenheid</valueUnit>
   <unitsSystem>Eenheden systeem</unitsSystem>
   <wxsServiceUrl>Service url</wxsServiceUrl>
-
+  <verticalElement>Verticale dekking</verticalElement>
+  <geographicIdentifier>Identifier gebied</geographicIdentifier>
+  <hierarchyLevelName>Naam hiërarchisch niveau</hierarchyLevelName>
+  <locale>Locale</locale>
+  <sds-addOperation>Operaties</sds-addOperation>
 </strings>
