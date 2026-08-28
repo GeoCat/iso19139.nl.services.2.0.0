@@ -33,26 +33,41 @@
     <xsl:variable name="licenses">
       <xsl:for-each select="$resourceConstraints/*/gmd:otherConstraints">
 
-        <xsl:variable name="httpUriInAnchorOrText"
-          select="(gmx:Anchor/@xlink:href[starts-with(., 'http')]
-          |gco:CharacterString[starts-with(., 'http')])[1]"/>
+        <xsl:variable name="isGeoGedeeldLicense" select="normalize-space(*/text()) = 'Geo Gedeeld licentie'"/>
+
+        <xsl:choose>
+          <xsl:when test="$isGeoGedeeldLicense">
+            <xsl:variable name="euDcatLicense"
+                          select="$euLicenses/rdf:RDF/skos:Concept[@rdf:about = 'http://definities.geostandaarden.nl/DCAT-AP-NL/id/waarde/licentieValue/niet-open']"/>
+
+            <xsl:if test="string($euDcatLicense/skos:prefLabel[@xml:lang = 'nl'])">
+              <xsl:value-of select="$euDcatLicense/skos:prefLabel[@xml:lang = 'nl']"/>
+            </xsl:if>
+          </xsl:when>
+
+          <xsl:otherwise>
+            <xsl:variable name="httpUriInAnchorOrText"
+                          select="(gmx:Anchor/@xlink:href[starts-with(., 'http')]|gco:CharacterString[starts-with(., 'http')])[1]"/>
 
 
-        <xsl:if test="$httpUriInAnchorOrText != ''">
-          <xsl:variable name="licenseUriWithoutHttp"
-            select="replace($httpUriInAnchorOrText,'https?://','')"/>
+            <xsl:if test="$httpUriInAnchorOrText != ''">
+              <xsl:variable name="licenseUriWithoutHttp"
+                            select="replace($httpUriInAnchorOrText,'https?://','')"/>
 
-          <xsl:variable name="euDcatLicense"
-            select="$euLicenses/rdf:RDF/skos:Concept[
+              <xsl:variable name="euDcatLicense"
+                            select="$euLicenses/rdf:RDF/skos:Concept[
             matches(skos:exactMatch/@rdf:resource,
             concat('https?://', $licenseUriWithoutHttp, '/?'))
             or matches(@rdf:about,
             concat('https?://', $licenseUriWithoutHttp, '/?'))]"/>
 
-          <xsl:if test="count($euDcatLicense) = 1">
-            <xsl:if test="string($euDcatLicense/skos:prefLabel[@xml:lang = 'nl'])"><xsl:value-of select="$euDcatLicense/skos:prefLabel[@xml:lang = 'nl']" /></xsl:if>
-          </xsl:if>
-        </xsl:if>
+              <xsl:if test="count($euDcatLicense) = 1">
+                <xsl:if test="string($euDcatLicense/skos:prefLabel[@xml:lang = 'nl'])"><xsl:value-of select="$euDcatLicense/skos:prefLabel[@xml:lang = 'nl']" /></xsl:if>
+              </xsl:if>
+            </xsl:if>
+          </xsl:otherwise>
+        </xsl:choose>
+
 
       </xsl:for-each>
 
