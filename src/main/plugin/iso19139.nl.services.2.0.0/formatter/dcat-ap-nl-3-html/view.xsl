@@ -590,9 +590,6 @@ using the region API -->
     <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC" match="start">Niet Commercieel, Geen Afgeleide Werken, Naamsvermelding verplicht,</entry>
     <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc-nd/3.0/deed.nl</entry>
     <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">http://creativecommons.org/licenses/by-nc-nd/4.0/deed.nl</entry>
-
-    <!-- TODO: review other allowed values related to this license -->
-    <entry key="http://publications.europa.eu/resource/authority/access-right/PUBLIC">Geo Gedeeld licentie</entry>
   </xsl:variable>
 
   <xsl:variable name="isMappingResourceConstraintsToEuVocabulary"
